@@ -30,6 +30,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
           <a class="nav-link active" href="{{ route('home.index') }}">Inicio</a>
+          <!--<a class="nav-link active" href="{{ route('home.products') }}">Productos</a> -->
           <a class="nav-link active" href="{{ route('home.about') }}">Acerca de</a>
         </div>
       </div>
