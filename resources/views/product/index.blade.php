@@ -7,16 +7,16 @@
 <!-- Inyectamos el texto con el contenido de la página en el yield "content" -->
 @section('content') 
     <div class="row">
-        <!-- Recorremos el listado de productos y mostramos la información -->
         @foreach($viewData["products"] as $product)
             <div class="col-md-6 col-lg-4 mb-2">
-                <img src="{{ asset("/img/$product['image']") }}" class="img-fluid rounded">
+            <img src="{{ asset("/img/" . $product['image']) }}" class="img-fluid rounded">
+
                 <h3>{{ $product['name'] }}</h3>
                 <p>{{ $product['description'] }}</p>
                 <p>Precio: ${{ $product['price'] }}</p>
-                <!-- Enlace para redirigir a la vista de detalles del producto -->
                 <a href="{{ route('product.show', ['id' => $product['id']]) }}">Ver detalles</a>
             </div>
         @endforeach
     </div>
 @endsection
+
