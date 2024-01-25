@@ -4,24 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Product;
+
 class ProductController extends Controller
 {
-    /*
-    Hay que borrar el "private products" y cambiar los 
-    métodos para cargar los datos de la base de datos
-    */ 
-
-    private $products = [
-        1 => ["id" => 1, "name" => "Producto 1", "description" => "Descripción del producto 1", "image" => "game.png", "price" => 199.99],
-        2 => ["id" => 2, "name" => "Producto 2", "description" => "Descripción del producto 2", "image" => "safe.png", "price" => 29.99],
-        3 => ["id" => 3, "name" => "Producto 3", "description" => "Descripción del producto 3", "image" => "submarine.png", "price" => 2999.99],
-        // Puedes añadir más productos
-    ];
 
     public function index() {
         $viewData = [];
         $viewData["title"] = "Listado de productos - Tienda online";
-        $viewData["products"] = $this->products;
+        $viewData["products"] = Product::all();
 
         return view("product.index")->with("viewData", $viewData);
     }
@@ -30,8 +21,8 @@ class ProductController extends Controller
         $viewData = [];
         
         // Verifica si el producto existe
-        if (isset($this->products[$id])) {
-            $product = $this->products[$id];
+        if (Product::find($id)) {
+            $product = Product::find($id);
     
             $viewData["title"] = $product["name"] . " - Detalles del producto";
             $viewData["product"] = $product;
