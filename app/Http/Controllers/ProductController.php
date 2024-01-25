@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /*
+    Hay que borrar el "private products" y cambiar los 
+    métodos para cargar los datos de la base de datos
+    */ 
+
     private $products = [
         1 => ["id" => 1, "name" => "Producto 1", "description" => "Descripción del producto 1", "image" => "game.png", "price" => 199.99],
         2 => ["id" => 2, "name" => "Producto 2", "description" => "Descripción del producto 2", "image" => "safe.png", "price" => 29.99],
