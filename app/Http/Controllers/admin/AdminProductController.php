@@ -17,6 +17,23 @@ class AdminProductController extends Controller
     }
 
     public function products(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'description' => 'nullable|string',
+        ]);
+    
+        $product = new Product;
+    
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
 
+        $product->image = $request->input('image', 'imagen.jpg');
+
+        $product->save();
+    
+        return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
     }
+    
 }
