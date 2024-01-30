@@ -7,7 +7,7 @@
   </div>
   <div class="card-body">
 
-    <form method="POST" action="">
+    <form method="POST" action="ruta de web.php">
       @csrf
       <div class="row">
         <div class="col">
