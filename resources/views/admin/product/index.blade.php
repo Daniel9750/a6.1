@@ -7,7 +7,7 @@
   </div>
   <div class="card-body">
 
-    <form method="POST" action="admin.product.products">
+    <form method="POST" action="/admin/products/product">
       @csrf
       <div class="row">
         <div class="col">
