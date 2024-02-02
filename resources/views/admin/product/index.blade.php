@@ -16,7 +16,7 @@
       </div>
     @endif
 
-    <form method="POST" action="/admin/products/products">
+    <form enctype="multipart/form-data" method="POST" action="/admin/products/products">
       @csrf
       <div class="row">
         <div class="col">
@@ -34,6 +34,14 @@
               <input name="price" value="" type="number" class="form-control">
             </div>
           </div>
+          <div class="col">
+          <div class="mb-3 row">
+            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Imagen:</label>
+            <div class="col-lg-10 col-md-6 col-sm-12">
+              <input name="image" value="" type="file" class="form-control">
+            </div>
+          </div>
+        </div>
         </div>
       </div>
       <div class="mb-3">
