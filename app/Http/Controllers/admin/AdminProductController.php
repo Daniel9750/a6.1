@@ -31,6 +31,8 @@ class AdminProductController extends Controller
         $product->price = $request->input('price');
         $product->description = $request->input('description');
 
+
+        // Esto habría que cambiarlo:
         $product->image = $request->input('image', 'imagen.jpg');
 
         $product->save();
