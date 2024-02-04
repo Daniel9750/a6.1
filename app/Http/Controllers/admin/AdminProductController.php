@@ -23,6 +23,7 @@ class AdminProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
     
         $product = new Product;
@@ -30,14 +31,23 @@ class AdminProductController extends Controller
         $product->name = $request->input('name');
         $product->price = $request->input('price');
         $product->description = $request->input('description');
+        $product->image = 'default.png';
 
-
-        // Esto habría que cambiarlo:
-        $product->image = $request->input('image', 'imagen.jpg');
-
+        $product->save();
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->extension(); 
+            $imageName = $product->id . '_image.' . $extension; 
+            $image->storeAs('public', $imageName); 
+    
+            $product->image = $imageName; 
+        } 
+        
         $product->save();
     
         return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
     }
+    
     
 }

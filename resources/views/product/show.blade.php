@@ -8,7 +8,7 @@
 @section('content') 
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <img src="{{ asset("/img/{$viewData['product']['image']}") }}" class="img-fluid rounded">
+            <img src="{{ asset("/storage/{$viewData['product']['image']}") }}" class="img-fluid rounded">
             <h3>{{ $viewData['product']['name'] }}</h3>
             <p>{{ $viewData['product']['description'] }}</p>
             <p>Precio: ${{ $viewData['product']['price'] }}</p>
