@@ -68,7 +68,6 @@
         </tr>
       </thead>
       <tbody>
-        <!-- ESTO HABRÍA QUE CAMBIARLO -->
         <tr>
           <td>[ ID ]</td>
           <td>[ NOMBRE ]</td>

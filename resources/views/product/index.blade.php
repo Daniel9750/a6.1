@@ -15,6 +15,7 @@
                 <p>{{ $product['description'] }}</p>
                 <p>Precio: ${{ $product['price'] }}</p>
                 <a href="{{ route('product.show', ['id' => $product['id']]) }}">Ver detalles</a>
+                <!-- Incluir botón para borrar -->
             </div>
         @endforeach
     </div>
