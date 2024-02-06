@@ -16,7 +16,14 @@
                 <p>Precio: ${{ $product['price'] }}</p>
                 <a href="{{ route('product.show', ['id' => $product['id']]) }}">Ver detalles</a>
                 <!-- Incluir formulario con 
-                     botón para borrar -->
+                     botón para borrar 
+
+                <form>
+                    @method('DELETE')
+                    <button></button>
+                </form>
+            
+            -->
             </div>
         @endforeach
     </div>
