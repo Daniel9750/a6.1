@@ -14,16 +14,15 @@
                 <h3>{{ $product['name'] }}</h3>
                 <p>{{ $product['description'] }}</p>
                 <p>Precio: ${{ $product['price'] }}</p>
-                <a href="{{ route('product.show', ['id' => $product['id']]) }}">Ver detalles</a>
-                <!-- Incluir formulario con 
-                     botón para borrar 
-
-                <form>
+                <a href="{{ route('product.show', ['id' => $product['id']]) }}"  class="btn btn-primary">Ver detalles</a>
+                <br><br>
+                <a href="{{ route('admin.product.edit', ['id' => $product['id']]) }}" class="btn btn-primary">Editar producto</a>
+                <br><br>
+                <form action="{{ route('admin.product.destroy', ['id' => $product['id']]) }}" method="POST">
+                    @csrf
                     @method('DELETE')
-                    <button></button>
+                    <button type="submit">Borrar producto</button>
                 </form>
-            
-            -->
             </div>
         @endforeach
     </div>

@@ -50,4 +50,61 @@ class AdminProductController extends Controller
     }
     
     
+    public function destroy($id)
+    {
+        try {
+            $product = Product::findOrFail($id);
+
+            if ($product->image !== 'default.png') {
+                Storage::delete("public/{$product->image}");
+            }
+
+            $product->delete();
+
+            return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.product.index')->with('error', 'Error deleting product');
+        }
+    }
+
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('admin.product.edit', compact('product'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
+
+        if ($request->hasFile('image')) {
+            if ($product->image !== 'default.png') {
+                Storage::delete("public/{$product->image}");
+            }
+
+            $image = $request->file('image');
+            $extension = $image->extension();
+            $imageName = $product->id . '_image.' . $extension;
+            $image->storeAs('public', $imageName);
+
+            $product->image = $imageName;
+        }
+
+        $product->save();
+
+        return redirect()->route('admin.product.index')->with('success', 'Product updated successfully');
+    }
+
 }
